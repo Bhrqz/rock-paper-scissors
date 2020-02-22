@@ -1,0 +1,121 @@
+<style>
+body{
+    background-color: grey;
+   }
+</style>
+
+<body>
+    <h1>Lets Play Rock, Paper or Scissors</h1>
+
+    <h2>Choose your play</h2>
+
+    <button onclick="playerInput()">Choose</button>
+    <button id="game" onclick="computerPlay()">Game</button>
+
+        
+<div><h4>Result:</h4>
+<p id="result"></p>
+</div>
+
+<h4>Computer Score</h4>
+<p id="computerScore"></p>
+
+<h4>User Score</h4>
+<p id="userScore"></p>
+        
+
+<script>
+let playerScore = 0;
+let computerScore = 0;
+
+let playerSelection = "";
+let computerSelection = "";
+
+
+//getting playuer selection 2
+
+function playerInput() {
+playerRaw = prompt("Make your decision!", "Rock");
+playerSelection = playerRaw.toLowerCase();
+
+if (!(playerSelection == "rock" || playerSelection == "scissors" || playerSelection == "paper"))
+{alert ("What did you say? Please repeat your play");}
+else {alert ("Good, now click the Game button");}
+ // verificando que el input sea legible. HASTA AQUI TODO BIEN.
+console.log("playerSelection es " +playerSelection); // verificando la jugada del USER
+}
+
+
+//CPU playing
+
+
+function computerPlay(){ 
+    items = ["rock", "paper", "scissors"]; 
+    computerSelection = items[Math.floor(Math.random()*items.length)];
+    console.log("computerSelection es " +computerSelection); // para verificar que la compu este jugando.
+
+   
+//play round
+
+if (computerSelection == "rock" && playerSelection == "paper")
+{playerScore++;
+    document.getElementById("userScore").innerHTML = (playerScore)
+console.log ('The Player Score is ' +playerScore+ ' and the Computer Score is '+computerScore);
+    document.getElementById("result").innerHTML = 'You Won, Paper beats Rock';
+    }
+
+else if (computerSelection == "rock" && playerSelection == "scissors")
+{computerScore++;
+    document.getElementById("computerScore").innerHTML = (computerScore)
+    console.log ('The Player Score is ' +playerScore+ ' and the Computer Score is '+computerScore);
+    document.getElementById("result").innerHTML = 'Oh, Rock beats Scissors';
+    }
+
+else if (computerSelection == "paper" && playerSelection == "scissors")
+{playerScore++;
+    document.getElementById("userScore").innerHTML = (playerScore)
+    console.log ('The Player Score is ' +playerScore+ ' and the Computer Score is '+computerScore);
+    document.getElementById("result").innerHTML = 'You Won, Scissors beats Paper';
+    }
+
+else if (computerSelection == "paper" && playerSelection == "rock")
+{computerScore++;
+    document.getElementById("computerScore").innerHTML = (computerScore)
+    console.log ('The Player Score is ' +playerScore+ ' and the Computer Score is '+computerScore);
+    document.getElementById("result").innerHTML = 'Oh, Paper beats Rock';
+}
+
+else if (computerSelection == "scissors" && playerSelection == "rock")
+{playerScore++;
+    document.getElementById("userScore").innerHTML = (playerScore)
+    console.log ('The Player Score is ' +playerScore+ ' and the Computer Score is '+computerScore);
+    document.getElementById("result").innerHTML = 'You Won, Rock beats Scissors';
+}
+
+else if (computerSelection == "scissors" && playerSelection == "paper")
+{computerScore++;
+    document.getElementById("computerScore").innerHTML = (computerScore)
+    console.log ('The Player Score is ' +playerScore+ ' and the Computer Score is '+computerScore);
+    document.getElementById("result").innerHTML = 'Oh, Scissors beats Paper';
+}
+else {console.log ('The Player Score is ' +playerScore+ ' and the Computer Score is '+computerScore)
+    document.getElementById("result").innerHTML = 'Its a Draw!'
+}
+
+//total win
+if (playerScore==5){
+    document.getElementById("result").innerHTML = 'You get 5 points. YOU WON THE MATCH!';
+    disableButton();}
+    else if (computerScore==5) {
+        document.getElementById("result").innerHTML = 'CPU got 5 points before you. You lose =(';
+        disableButton();}
+    else{
+        return 'keep playing'}
+}
+
+function disableButton(){
+    document.getElementById("game").disabled = true;
+}
+
+</script>
+</body>
